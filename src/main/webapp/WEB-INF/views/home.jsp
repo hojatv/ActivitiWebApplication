@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>
-	Embedded Activiti WEB Application Works!
+	Standalone Activiti WEB Application Works!
 </h1>
 
 </body>

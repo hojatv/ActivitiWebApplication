@@ -28,12 +28,6 @@ public class TaskResource {
                 .taskId(taskId)
                 .singleResult();
         TaskResponse response = new TaskResponse(task);
-        /*TaskFormData taskFormData =
-                processEngine.getFormService()
-                        .getTaskFormData(taskId);
-        if (taskFormData != null) {
-            response.setFormKey(taskFormData.getFormKey());
-        }*/
         return response;
     }
 }
