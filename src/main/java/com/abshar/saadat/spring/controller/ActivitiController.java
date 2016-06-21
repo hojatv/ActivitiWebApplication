@@ -25,7 +25,7 @@ public class ActivitiController {
     @RequestMapping(value = RestURIConstants.GET_ALL_USERS, method = RequestMethod.GET)
     public
     @ResponseBody
-    List<UserModel> getAllEmployees() {
+    List<UserModel> getAllUsers() {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         List<org.activiti.engine.identity.User> users = processEngine.getIdentityService()
                 .createUserQuery().list();
