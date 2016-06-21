@@ -13,19 +13,10 @@
 		<org.aspectj-version>1.7.4</org.aspectj-version>
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 		<jackson.databind-version>2.2.3</jackson.databind-version>
+		<activiti.version>5.19.0.2</activiti.version>
 	</properties>
 	<dependencies>
 		<!-- Jackson -->
-		<!--<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>5.19.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>5.19.0.2</version>
-		</dependency>-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -136,13 +127,23 @@
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-engine</artifactId>
-			<version>5.19.0.2</version>
+			<version>${activiti.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-rest</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<!--		<dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-rest</artifactId>
+                    <version>5.20.0-SNAPSHOT</version>
+                </dependency>-->
 	</dependencies>
 	<build>
 		<plugins>
