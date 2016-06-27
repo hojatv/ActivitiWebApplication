@@ -25,7 +25,6 @@ public class TaskResource {
     @Autowired
     private TaskService taskService;
 
-    @Transactional
     @RequestMapping(value = RestURIConstants.GET_TASKS,params = {"taskId"},method = RequestMethod.GET)
     public
     @ResponseBody
