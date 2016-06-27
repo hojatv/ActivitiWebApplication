@@ -19,7 +19,7 @@ public class TaskServiceController {
     @Autowired
     private TaskService taskService;
 
-    @RequestMapping(value = RestURIConstants.GET_TASKS,params = {"taskId"},method = RequestMethod.GET)
+    @RequestMapping(value = RestURIConstants.GET_TASKS, params = {"taskId"}, method = RequestMethod.GET)
     public
     @ResponseBody
     TaskResponse getTasks(String taskId) {
