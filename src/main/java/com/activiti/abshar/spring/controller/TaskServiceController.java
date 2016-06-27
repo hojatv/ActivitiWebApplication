@@ -1,6 +1,6 @@
 package com.activiti.abshar.spring.controller;
 
-import com.activiti.abshar.spring.controller.RestURIConstants;
+import com.activiti.abshar.spring.controller.common.RestURIConstants;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 import org.activiti.rest.service.api.runtime.task.TaskResponse;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
-public class TaskController {
+public class TaskServiceController {
     @Autowired
     private TaskService taskService;
 
@@ -24,11 +24,17 @@ public class TaskController {
     @ResponseBody
     TaskResponse getTasks(String taskId) {
         /*ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();*/
-        Task task = taskService
-                .createTaskQuery()
-                .taskId(taskId)
-                .singleResult();
-        TaskResponse response = new TaskResponse(task);
-        return response;
+        try {
+            Task task = taskService
+                    .createTaskQuery()
+                    .taskId(taskId)
+                    .singleResult();
+            TaskResponse response = new TaskResponse(task);
+            return response;
+        } catch (Exception e) {
+            //TODO return response object for all services
+            e.printStackTrace();
+        }
+        return null;
     }
 }
