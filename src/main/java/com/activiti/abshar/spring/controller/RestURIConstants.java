@@ -1,4 +1,4 @@
-package com.abshar.saadat.spring.controller;
+package com.activiti.abshar.spring.controller;
 
 public class RestURIConstants {
     public static final String GET_ALL_USERS = "/rest/users";

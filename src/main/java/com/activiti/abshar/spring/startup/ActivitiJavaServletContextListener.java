@@ -1,4 +1,4 @@
-package com.abshar.saadat.spring.startup;
+package com.activiti.abshar.spring.startup;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
@@ -6,7 +6,7 @@ import org.activiti.engine.ProcessEngines;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
+@Deprecated
 public class ActivitiJavaServletContextListener implements ServletContextListener {
   
   @Override

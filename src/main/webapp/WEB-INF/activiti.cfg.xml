@@ -9,22 +9,6 @@
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- StandaloneProcessEngineConfiguration : This is the implementation you need in a regular Activiti environment when you aren’t using Spring.-->
-    <!--<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
-        <property name="databaseType" value="mysql"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti"/>
-        <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUsername" value="root"/>
-        <property name="jdbcPassword" value="root"/>
-        <property name="mailServerPort" value="1025"/>
-        <property name="jobExecutorActivate" value="false"/>
-        <property name="customPostDeployers">
-            <list>
-                <bean class="org.activiti.engine.impl.rules.RulesDeployer"/>
-            </list>
-        </property>
-        <property name="history" value="full"/>
-    </bean>-->
     <mvc:annotation-driven />
     <context:annotation-config/>
     <bean id="dataSource"
@@ -51,6 +35,7 @@
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
     <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
     <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
 
 
 </beans>

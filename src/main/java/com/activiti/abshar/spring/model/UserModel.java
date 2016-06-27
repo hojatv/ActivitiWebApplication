@@ -1,4 +1,4 @@
-package com.abshar.saadat.spring.model;
+package com.activiti.abshar.spring.model;
 
 import java.io.Serializable;
 
