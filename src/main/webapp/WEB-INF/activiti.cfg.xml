@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-  <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration" >
-    <property name="databaseType" value="mysql" />
-    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti" />
-    <property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
-    <property name="jdbcUsername" value="root" />
-    <property name="jdbcPassword" value="root" />
-    <property name="mailServerPort" value="1025"/>
-    <property name="jobExecutorActivate" value="false" />
-    <property name="customPostDeployers">
-      <list>
-        <bean class="org.activiti.engine.impl.rules.RulesDeployer" />
-      </list>
-    </property>
-    <property name="history" value="full" />
+    <!--<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+        <property name="databaseType" value="mysql"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti"/>
+        <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUsername" value="root"/>
+        <property name="jdbcPassword" value="root"/>
+        <property name="mailServerPort" value="1025"/>
+        <property name="jobExecutorActivate" value="false"/>
+        <property name="customPostDeployers">
+            <list>
+                <bean class="org.activiti.engine.impl.rules.RulesDeployer"/>
+            </list>
+        </property>
+        <property name="history" value="full"/>
+    </bean>-->
+    <mvc:annotation-driven />
+    <context:annotation-config/>
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/activiti"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
 
-  </bean>
-  
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="databaseType" value="mysql"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+
+
 </beans>
