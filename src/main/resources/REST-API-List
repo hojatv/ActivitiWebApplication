@@ -1,0 +1,3 @@
+http://localhost:8080/ActivitiWebApplication/rest/runtime/startProcessInstanceByKey?key=1
+http://localhost:8080/ActivitiWebApplication/rest/task/findTaskById?taskId=1
+http://localhost:8080/ActivitiWebApplication/rest/identity/users
