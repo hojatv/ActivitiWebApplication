@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Handles requests for the User service.
  */
 @Controller
-public class ActivitiController {
+public class HomeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ActivitiController.class);
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     private static final String VIEW_NAME = "/home";
 
     @RequestMapping({"/"})
