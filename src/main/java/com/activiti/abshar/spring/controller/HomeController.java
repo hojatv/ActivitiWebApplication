@@ -9,10 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-
+    /**
+     * Logger.
+     */
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    /**
+     * homePage.
+     */
     private static final String VIEW_NAME = "/home";
 
+    /**
+     * Handles the main web page.
+     *
+     * @return the view name
+     */
     @RequestMapping({"/"})
     public String home() {
         return VIEW_NAME;
