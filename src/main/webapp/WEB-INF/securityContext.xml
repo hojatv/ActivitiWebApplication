@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http>
+        <security:anonymous enabled="true" />
+        <security:intercept-url pattern="/*" access="ROLE_DEV"/>
+        <security:form-login login-page="/spring_security_login"/>
+        <security:http-basic />
+    </security:http>
+
+    <security:global-method-security pre-post-annotations="enabled" />
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user authorities="ROLE_DEV" name="dev" password="a5b6e5352d94bdb20947ce0be367909a7467a8e5c5249bbde3360e5a6303e52c35004a6799036e7d" />
+            </security:user-service>
+            <security:password-encoder ref="passwordEncoder" />
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
+</beans>

@@ -4,6 +4,7 @@ import com.activiti.abshar.spring.controller.common.RestURIConstants;
 import com.activiti.abshar.spring.model.ActivitiResponse;
 import org.activiti.engine.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,7 @@ public class IdentityServiceController {
      * @return activiti users.
      */
     @RequestMapping(value = RestURIConstants.GET_ALL_USERS, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_DEV')")
     public
     @ResponseBody
     ActivitiResponse getAllUsers() {

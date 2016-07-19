@@ -1,6 +1,7 @@
 package com.activiti.abshar.spring.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +25,7 @@ public class HomeController {
      * @return the view name
      */
     @RequestMapping({"/"})
+    @PreAuthorize("hasAnyRole('ROLE_DEV')")
     public String home() {
         return VIEW_NAME;
     }
