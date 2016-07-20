@@ -9,7 +9,7 @@
 
     <security:http>
         <security:anonymous enabled="true" />
-        <security:intercept-url pattern="/*" access="ROLE_DEV"/>
+        <security:intercept-url pattern="/**" access="ROLE_DEV" />
         <security:form-login login-page="/spring_security_login"/>
         <security:http-basic />
     </security:http>
