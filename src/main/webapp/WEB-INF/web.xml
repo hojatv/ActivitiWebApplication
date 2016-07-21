@@ -9,6 +9,7 @@
 		<param-value>
 			/WEB-INF/activiti.cfg.xml
 			/WEB-INF/securityContext.xml
+			/WEB-INF/spring-database.xml
 		</param-value>
 	</context-param>
 	

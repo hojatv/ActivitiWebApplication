@@ -1,29 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:security="http://www.springframework.org/schema/security"
+    <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
 
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+        <!-- access denied page -->
+       <access-denied-handler error-page="/403" />
 
-    <security:http>
-        <security:anonymous enabled="true" />
-        <security:intercept-url pattern="/**" access="ROLE_DEV" />
-        <security:form-login login-page="/spring_security_login"/>
-        <security:http-basic />
-    </security:http>
+        <form-login
+                login-page="/login"
+                default-target-url="/welcome"
+                authentication-failure-url="/login?error"
+                username-parameter="username"
+                password-parameter="password" />
+        <logout logout-success-url="/login?logout"  />
+        <!-- enable csrf protection -->
+        <csrf/>
+    </http>
 
-    <security:global-method-security pre-post-annotations="enabled" />
+    <!-- Select users and user_roles from database -->
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query=
+                                       "select username,password, enabled from users where username=?"
+                               authorities-by-username-query=
+                                       "select username, role from user_roles where username =?  " />
+        </authentication-provider>
+    </authentication-manager>
 
-    <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user authorities="ROLE_DEV" name="dev" password="a5b6e5352d94bdb20947ce0be367909a7467a8e5c5249bbde3360e5a6303e52c35004a6799036e7d" />
-            </security:user-service>
-            <security:password-encoder ref="passwordEncoder" />
-        </security:authentication-provider>
-    </security:authentication-manager>
-
-    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
-</beans>
+</beans:beans>

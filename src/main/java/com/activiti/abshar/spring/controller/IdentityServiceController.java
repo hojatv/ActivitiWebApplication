@@ -34,7 +34,6 @@ public class IdentityServiceController {
      * @return activiti users.
      */
     @RequestMapping(value = RestURIConstants.GET_ALL_USERS, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_DEV')")
     public
     @ResponseBody
     ActivitiResponse getAllUsers() {
