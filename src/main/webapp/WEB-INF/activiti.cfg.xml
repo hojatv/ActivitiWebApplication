@@ -11,14 +11,6 @@
 
     <mvc:annotation-driven />
     <context:annotation-config/>
-    <!--<bean id="dataSource"
-          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/activiti"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-    </bean>-->
-
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>

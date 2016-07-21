@@ -37,11 +37,11 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>Spring Security Login Form (Database Authentication)</h1>
+	<h1>Activiti Authentication</h1>
 
 	<div id="login-box">
 
-		<h3>Login with Username and Password</h3>
+		<h3>Login with Activiti Id and Password</h3>
 
 		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
@@ -55,7 +55,7 @@
 
 			<table>
 				<tr>
-					<td>User:</td>
+					<td>Id:</td>
 					<td><input type='text' name='username'></td>
 				</tr>
 				<tr>

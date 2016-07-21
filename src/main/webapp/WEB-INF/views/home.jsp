@@ -6,7 +6,7 @@
 	<h1>Title : ${title}</h1>
 	<h1>Message : ${message}</h1>
 
-	<sec:authorize access="hasRole('ROLE_DEV')">
+	<sec:authorize access="hasRole('ROLE_USER')">
 		<!-- For login user -->
 		<c:url value="/j_spring_security_logout" var="logoutUrl" />
 		<form action="${logoutUrl}" method="post" id="logoutForm">

@@ -24,7 +24,7 @@ public class HomeController {
     /**
      * homePage.
      */
-    private static final String VIEW_NAME = "/hello";
+    private static final String VIEW_NAME = "/home";
 
 /*    *//**
      * Handles the main web page.
@@ -41,7 +41,7 @@ public class HomeController {
     public ModelAndView defaultPage() {
 
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
+        model.addObject("title", "ActivitiWebApplication");
         model.addObject("message", "This is default page!");
         model.setViewName(VIEW_NAME);
         return model;
@@ -51,7 +51,7 @@ public class HomeController {
     public ModelAndView adminPage() {
 
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
+        model.addObject("title", "Activiti Authentication");
         model.addObject("message", "This page is for ROLE_ADMIN only!");
         model.setViewName("admin");
 
